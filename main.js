@@ -141,6 +141,32 @@ printToDom("printDuckNamesHere", domString);
 };
 
 
+
+
+const chooseBlue = (e) => {
+    const buttonId = e.target.id;
+    const blueDucks = [];
+    for(let i = 0; i < ducks.lengths; i++){
+      if(ducks[i].color === buttonId){
+      blueDucks.push(ducks[i]);
+}
+    }
+    duckPrinter(blueDucks);
+}
+
+
+
+
+
+
+
+
+
+const events = () => {
+document.getElementById("blue").addEventListener("click", chooseBlue);
+}
+
+
 const init = () => {
     buildDuckCards(ducks);
 };
