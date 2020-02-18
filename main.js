@@ -1,4 +1,4 @@
-console.log("If you can see this, your JavaScript is connected.")
+
 
 const ducks = [
     {
@@ -76,7 +76,7 @@ const ducks = [
         age: 50,
         featherNumber: 0,
         name: "Bruce",
-        image:"hhttps://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWcCu-IBL5X9Uj7tvjZKTKdnb19xVeyeo1J-63_yWipeYb_Qnv&s"
+        image:"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTue3oG6-J5ciHUTW3R05wT9yQZBKZxESre4UEs5IlUJC1fzMPv"
     },
 
     {
@@ -107,10 +107,6 @@ const ducks = [
 ]
 
 
-
-console.log(ducks)
-
-
 //print to DOM function
 const printToDom = (divId, textToPrint) => {
     const selectedDiv = document.getElementById(divId);
@@ -118,57 +114,75 @@ const printToDom = (divId, textToPrint) => {
 };
 
 
-const buildDuckCards = (quacks) => {
+const buildDuckCards = (arr) => {
     let domString = "";
-    for(i = 0; i < quacks.length; i++) {
+    for(i = 0; i < arr.length; i++) {
     domString += `<div class="col-md-6 col-lg-4">`;
-    domString += `<div class="card">`;
-    domString += `<h1 class="Name:">${quacks[i].name}`;
-    domString += `<img src="${quacks[i].image}" class="card-img-top" alt="...">`;
+    domString +=    `<div class="card">`;
+    domString += `<h1 class="Name:">${arr[i].name}`;
+    domString += `<img src="${arr[i].image}" class="card-img-top" alt="...">`;
     domString += `<div class="card-body ">`;
-    domString += `<h5 class="Age:">${quacks[i].age}`;
-    domString += `<h5 class="Is Rubber?">${"Is Rubber? "}${quacks[i].isRubber}`;
-    domString += `<h5 class="Gender:">${"Gender: "}${quacks[i].gender}`;
-    domString += `<h5 class="Is Migratory?">${"Do I migrate? "}${quacks[i].isMigratory}`;
-    domString += `<h5 class="Social Status:">${"Social Status: "}${quacks[i].socialStatus}`;
-    domString += `<h5 class="Diet:">${"Diet: "}${quacks[i].diet}`;
-    domString += `<h5 class="Feather Number:">${quacks[i].featherNumber}`;
-    domString += `</div>`;
-    domString += `</div>`;
+    domString +=            `<h5 class="Age:">${arr[i].age}`;
+    domString +=            `<h5 class="Is Rubber?">${"Is Rubber? "}${arr[i].isRubber}`;
+    domString +=            `<h5 class="Gender:">${"Gender: "}${arr[i].gender}`;
+    domString +=            `<h5 class="Is Migratory?">${"Do I migrate? "}${arr[i].isMigratory}`;
+    domString +=            `<h5 class="Social Status:">${"Social Status: "}${arr[i].socialStatus}`;
+    domString +=            `<h5 class="Diet:">${"Diet: "}${arr[i].diet}`;
+    domString +=            `<h5 class="Feather Number:">${arr[i].featherNumber}`;
+    domString +=            `<h5 class="Color:">${arr[i].color}`;
+    domString +=        `</div>`;
+    domString +=    `</div>`;
     domString += `</div>`;
 };
 printToDom("printDuckNamesHere", domString);
 };
 
 
-
-
-const chooseBlue = (e) => {
+const findMyDucksColor = (e) => {
     const buttonId = e.target.id;
-    const blueDucks = [];
-    for(let i = 0; i < ducks.lengths; i++){
+    if(buttonId === "all") {
+        buildDuckCards(ducks)
+    } else {
+        const ducksColor = [];
+    for(let i = 0; i < ducks.length; i++){
       if(ducks[i].color === buttonId){
-      blueDucks.push(ducks[i]);
+      ducksColor.push(ducks[i]);
 }
     }
-    duckPrinter(blueDucks);
+    buildDuckCards(ducksColor);
 }
+};
 
 
-
-
-
-
-
+const findMyDucksGender = (e) => {
+    const buttonId = e.target.id;
+    if(buttonId === "all") {
+        buildDuckCards(ducks)
+    } else {
+        const ducksGender = [];
+    for(let i = 0; i < ducks.length; i++){
+      if(ducks[i].gender === buttonId){
+      ducksGender.push(ducks[i]);
+}
+    }
+    buildDuckCards(ducksGender);
+}
+};
 
 
 const events = () => {
-document.getElementById("blue").addEventListener("click", chooseBlue);
-}
+document.getElementById("white").addEventListener("click", findMyDucksColor);
+document.getElementById("green").addEventListener("click", findMyDucksColor );
+document.getElementById("blue").addEventListener("click", findMyDucksColor );
+document.getElementById("male").addEventListener("click", findMyDucksGender);
+document.getElementById("female").addEventListener("click", findMyDucksGender);
+document.getElementById("all").addEventListener("click", findMyDucksColor);
+};
 
 
 const init = () => {
     buildDuckCards(ducks);
+    events();
 };
 
 init();
