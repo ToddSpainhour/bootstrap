@@ -2,6 +2,23 @@ body {
     background-color: steelblue;
 }
 
+h1 {
+    text-align: center;
+}
+
+.button-row {
+    margin: 3%;
+}
+
 .card {
     margin-bottom:10px;
+    /* max-width: 30%; */
+}
+
+.card-img-top{
+    max-height: 300px;;
+}
+
+.col-md-6 col-lg-4 {
+    max-width: 30%;
 }
